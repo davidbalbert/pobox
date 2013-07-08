@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title #{title} - POBox
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+
+  %body
+    - if flash[:success]
+      #success-flash= flash[:success]
+    - if flash[:error]
+      #error-flash= flash[:error]
+
+    %h1= title
+
+    = yield

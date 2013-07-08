@@ -1,0 +1,11 @@
+- title "Import your mail"
+
+= form_tag imports_path, method: :post do
+  .form-field
+    = label_tag :username, "Gmail address"
+    = text_field_tag :username
+  .form-field
+    = label_tag :password
+    = password_field_tag :password
+  .form-field
+    = submit_tag "Import mail"

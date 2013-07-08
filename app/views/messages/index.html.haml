@@ -1,0 +1,8 @@
+- title "Inbox"
+
+- if @messages.present?
+  %ul
+    - @messages.each do |m|
+      %li #{m.from} - #{m.subject}
+- else
+  #no-messages-notice You have no messages. Maybe you should #{link_to "import some", import_url}.
