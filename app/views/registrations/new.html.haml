@@ -1,0 +1,17 @@
+- title "Sign up for POBox"
+
+= form_for @registration do |f|
+  .form-field
+    = f.label :nickname
+    = f.text_field :nickname
+  .form-field
+    = f.label :email
+    = f.text_field :email
+  .form-field
+    = f.label :password
+    = f.password_field :password
+  .form-field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  .form-field
+    = f.submit "Sign up"

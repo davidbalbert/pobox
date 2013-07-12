@@ -1,6 +1,11 @@
 POBox::Application.routes.draw do
-  root 'messages#index'
+  root 'pages#index'
   resources :messages
+
+  resources :registrations
+  get 'signup' => 'registrations#new', as: 'signup'
+
+  get 'login' => 'sessions#new', as: 'login'
 
   get 'import' => 'imports#new', as: 'import'
   resources :imports
