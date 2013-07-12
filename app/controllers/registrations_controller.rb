@@ -8,6 +8,8 @@ class RegistrationsController < ApplicationController
 
     if @registration.submit
       flash[:success] = "Account created!"
+      # TODO: log the user in
+      # login @registration.user
       redirect_to root_url
     else
       flash.now[:error] = "There was a problem creating your account"
