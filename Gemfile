@@ -14,6 +14,8 @@ gem 'haml'
 
 gem 'pry-rails'
 
+gem 'gmail-imap', require: 'net/imap/gmail', github: 'davidbalbert/gmail-imap', branch: 'support-ruby-2.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

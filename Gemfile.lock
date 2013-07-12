@@ -13,6 +13,13 @@ GIT
       activerecord (>= 3.0, < 4.1)
       delayed_job (>= 3.0, < 4.1)
 
+GIT
+  remote: git://github.com/davidbalbert/gmail-imap.git
+  revision: 878ea0639f13fe89e2644e517e0771a449102033
+  branch: support-ruby-2.0
+  specs:
+    gmail-imap (1.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -144,6 +151,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   delayed_job!
   delayed_job_active_record!
+  gmail-imap!
   haml
   jbuilder (~> 1.2)
   jquery-rails
