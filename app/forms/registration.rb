@@ -10,7 +10,7 @@ class Registration
 
     account.email = email
 
-    if user.valid? && account.valid?
+    if valid?
       user.save
       account.save
       true
@@ -25,5 +25,23 @@ class Registration
 
   def account
     @account ||= user.accounts.build
+  end
+
+  def valid?(context = nil)
+    valid = user.valid?(context) && account.valid?(context)
+    populate_errors
+
+    valid
+  end
+
+  private
+  def populate_errors
+    user.errors.each do |attribute, error|
+      errors.add(attribute, error)
+    end
+
+    account.errors.each do |attribute, error|
+      errors.add(attribute, error)
+    end
   end
 end
