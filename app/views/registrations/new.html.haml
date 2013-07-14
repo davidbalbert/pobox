@@ -1,6 +1,8 @@
 - title "Sign up for POBox"
 
 = form_for @registration do |f|
+  = error_list(@registration)
+
   .form-field
     = f.label :nickname
     = f.text_field :nickname
