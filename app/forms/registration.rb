@@ -1,15 +1,10 @@
 class Registration
   include ActiveModel::Model
 
-  attr_accessor :nickname, :email, :password, :password_confirmation
+  delegate *[:nickname, :password, :password_confirmation].map {|a| [a, :"#{a}="]}.flatten, to: :user
+  delegate :email, :email=, to: :account
 
   def submit
-    user.nickname = nickname
-    user.password = password
-    user.password_confirmation = password_confirmation
-
-    account.email = email
-
     if valid?
       user.save
       account.save
