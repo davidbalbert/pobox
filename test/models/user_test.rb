@@ -7,28 +7,28 @@ class UserTest < ActiveSupport::TestCase
                         password_confirmation: 'secret'}
   end
 
-  test "should save with proper attributes" do
+  test "is valid proper attributes" do
     user = User.new(@user_attributes)
-    assert user.save
+    assert user.valid?
   end
 
-  test "should not save without password" do
+  test "is not valid without password" do
     user = User.new(@user_attributes.except(:password))
-    assert !user.save
+    assert !user.valid?, "User was valid without a password"
   end
 
-  test "should not save without password_confirmation" do
+  test "is not valid without password_confirmation" do
     user = User.new(@user_attributes.except(:password_confirmation))
-    assert !user.save
+    assert !user.valid?, "User was valid without a password_confirmation"
   end
 
-  test "should not save with different password and confirmation" do
+  test "is not valid with different password and confirmation" do
     user = User.new(@user_attributes.merge(password: 'wrong'))
-    assert !user.save
+    assert !user.valid?, "User was valid with differing password and confirmation"
   end
 
-  test "should not save without nickname" do
+  test "is not valid without nickname" do
     user = User.new(@user_attributes.except(:nickname))
-    assert !user.save
+    assert !user.valid?, "User was valid without a nickname"
   end
 end
