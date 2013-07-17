@@ -1,22 +1,22 @@
 require 'test_helper'
 
-class Person
-  include ActiveModel::Model
-
-  attr_accessor :name
-
-  validates :name, presence: true
-end
-
-class PersonForm < Form
-  wraps person: [:name]
-
-  def person
-    @person ||= Person.new
-  end
-end
-
 class FormTest < ActiveSupport::TestCase
+  class Person
+    include ActiveModel::Model
+
+    attr_accessor :name
+
+    validates :name, presence: true
+  end
+
+  class PersonForm < Form
+    wraps person: [:name]
+
+    def person
+      @person ||= Person.new
+    end
+  end
+
   def setup
     @form = PersonForm.new
   end
