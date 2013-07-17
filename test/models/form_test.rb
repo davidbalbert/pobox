@@ -29,7 +29,7 @@ class FormTest < ActiveSupport::TestCase
     assert_equal @form.name, "Nicholas"
   end
 
-  test "is valid if its wrapped objects are valid" do
+  test "should be valid if its wrapped objects are valid" do
     assert !@form.valid?
 
     @form.person.name = "David"
@@ -37,20 +37,20 @@ class FormTest < ActiveSupport::TestCase
     assert @form.valid?
   end
 
-  test "copies errors over from wrapped objects" do
+  test "should copy errors over from wrapped objects" do
     @form.valid?
 
     assert_equal @form.errors.size, @form.person.errors.size
     assert_equal @form.errors.first, @form.person.errors.first
   end
 
-  test "saves wrapped objects on submit" do
+  test "should save wrapped objects on submit" do
     @form.name = "David"
     @form.person.expects(:save)
     assert @form.submit
   end
 
-  test "doesn't save wrapped objects if it is invalid" do
+  test "shouldn't save wrapped objects if it is invalid" do
     @form.person.expects(:save).never
     assert !@form.submit
   end
