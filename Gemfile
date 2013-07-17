@@ -52,6 +52,10 @@ group :development do
   gem 'pry-remote'
 end
 
+group :test do
+  gem 'mocha', require: false
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
