@@ -1,4 +1,3 @@
 class PagesController < ApplicationController
-  def index
-  end
+  before_filter :require_logout
 end

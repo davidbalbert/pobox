@@ -5,7 +5,9 @@ POBox::Application.routes.draw do
   resources :registrations
   get 'signup' => 'registrations#new', as: 'signup'
 
+  resources :sessions
   get 'login' => 'sessions#new', as: 'login'
+  get 'logout' => 'sessions#destroy', as: 'logout'
 
   get 'import' => 'imports#new', as: 'import'
   resources :imports
