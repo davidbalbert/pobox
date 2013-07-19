@@ -14,4 +14,10 @@ class AccountTest < ActiveSupport::TestCase
     account = Account.new(@account_attributes.except(:email))
     assert !account.valid?, "Account was valid without an email"
   end
+
+  test "should have a unique email" do
+    account1 = Account.create(@account_attributes)
+    account2 = Account.new(@account_attributes)
+    assert !account2.valid?, "Account was valid with a non-unique email"
+  end
 end
