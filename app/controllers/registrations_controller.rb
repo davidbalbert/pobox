@@ -1,4 +1,5 @@
 class RegistrationsController < ApplicationController
+  before_filter :require_logout
   def new
     @registration = Registration.new
   end
@@ -7,9 +8,8 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(params[:registration])
 
     if @registration.submit
+      login @registration.user
       flash[:success] = "Account created!"
-      # TODO: log the user in
-      # login @registration.user
       redirect_to root_url
     else
       flash.now[:error] = "There was a problem creating your account"
