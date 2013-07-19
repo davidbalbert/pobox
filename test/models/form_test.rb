@@ -23,25 +23,25 @@ class FormTest < ActiveSupport::TestCase
 
   test "delegates attributes to wrapped objects" do
     @form.name = "David"
-    assert_equal @form.person.name, "David"
+    assert_equal "David", @form.person.name
 
     @form.person.name = "Nicholas"
-    assert_equal @form.name, "Nicholas"
+    assert_equal "Nicholas", @form.name
   end
 
   test "should be valid if its wrapped objects are valid" do
-    assert !@form.valid?
+    assert !@form.person.valid? && !@form.valid?
 
     @form.person.name = "David"
 
-    assert @form.valid?
+    assert @form.person.valid? && @form.valid?
   end
 
   test "should copy errors over from wrapped objects" do
     @form.valid?
 
-    assert_equal @form.errors.size, @form.person.errors.size
-    assert_equal @form.errors.first, @form.person.errors.first
+    assert_equal @form.person.errors.size, @form.errors.size
+    assert_equal @form.person.errors.first, @form.errors.first
   end
 
   test "should save wrapped objects on submit" do
