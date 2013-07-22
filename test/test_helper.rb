@@ -12,6 +12,13 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def assert_logged_in(user)
+    assert_equal user.id, session[:user_id], "#{user.nickname} with id #{user.id} was not logged in"
+  end
+
+  def assert_logged_out
+    assert_nil session[:user_id], "A user was logged in"
+  end
 end
 
 require 'mocha/setup'
