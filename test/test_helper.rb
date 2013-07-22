@@ -23,6 +23,10 @@ class ActiveSupport::TestCase
   def assert_logged_out
     assert_nil session[:user_id], "A user was logged in"
   end
+
+  def login(user)
+    session[:user_id] = user.id
+  end
 end
 
 require 'mocha/setup'
