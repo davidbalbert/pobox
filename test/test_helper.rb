@@ -12,8 +12,12 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  def assert_logged_in(user)
+  def assert_logged_in_as(user)
     assert_equal user.id, session[:user_id], "#{user.nickname} with id #{user.id} was not logged in"
+  end
+
+  def assert_logged_in
+    assert session[:user_id], "There was no user logged in"
   end
 
   def assert_logged_out
