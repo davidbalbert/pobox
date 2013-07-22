@@ -5,6 +5,7 @@ class Form
     def wraps(models)
       models.each do |name, attributes|
         model_names << name
+        fields.concat(attributes)
 
         delegate *attributes.map { |attr| [attr, :"#{attr}="] }.flatten, to: name
       end
@@ -12,6 +13,10 @@ class Form
 
     def model_names
       @model_names ||= []
+    end
+
+    def fields
+      @fields ||= []
     end
   end
 
@@ -37,12 +42,16 @@ class Form
   def populate_errors
     models.each do |model|
       model.errors.each do |attribute, error|
-        errors.add(attribute, error)
+        errors.add(attribute, error) if fields.include?(attribute)
       end
     end
   end
 
   def models
     self.class.model_names.map { |name| send(name) }
+  end
+
+  def fields
+    self.class.fields
   end
 end

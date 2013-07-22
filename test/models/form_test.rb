@@ -44,6 +44,14 @@ class FormTest < ActiveSupport::TestCase
     assert_equal @form.person.errors.first, @form.errors.first
   end
 
+  test "should only copy errors over for wrapped fields" do
+    @form.person.valid?
+    @form.person.errors.add(:fake_field, 'has an error')
+
+    @form.send(:populate_errors)
+    assert !@form.errors.has_key?(:fake_field), "Error for :fake_field coppied over even though PersonForm doesn't wrap :fake_field."
+  end
+
   test "should save wrapped objects on submit" do
     @form.name = "David"
     @form.person.expects(:save)
