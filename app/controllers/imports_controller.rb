@@ -1,6 +1,6 @@
 class ImportsController < ApplicationController
   def create
-    importer = GmailImporter.new(params[:username], params[:password])
+    importer = GmailImporter.new(params[:email], params[:password])
 
     importer.delay.import(50)
 

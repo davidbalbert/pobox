@@ -5,4 +5,4 @@
     - @messages.each do |m|
       %li #{m.from} - #{m.subject}
 - else
-  #no-messages-notice You have no messages. Maybe you should #{link_to "import some", import_url}.
+  #no-messages-notice You have no messages. Maybe you should #{link_to "import some", new_import_path}.
